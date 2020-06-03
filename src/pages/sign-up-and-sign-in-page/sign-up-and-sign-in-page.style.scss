@@ -1,0 +1,11 @@
+.signup-signin-container {
+
+    width: 80%;
+    margin: auto;
+    margin-top: 4rem;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+
+}

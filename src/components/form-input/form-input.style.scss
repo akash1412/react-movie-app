@@ -1,0 +1,33 @@
+.form__label {
+    display: block;
+    padding: 0 .8rem;
+    font-size: 1.8rem;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    transition: all .3s ease-out;
+
+}
+
+.form__input {
+    width: 90%;
+    padding: .4rem .8rem;
+    font-size: 1.8rem;
+    border: none;
+    border-bottom: 1.5px solid #bdc3c7;
+
+
+    &:active {
+        border: none;
+        outline: none;
+    }
+
+
+    &:placeholder-shown~.form__label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-3rem);
+    }
+
+}
