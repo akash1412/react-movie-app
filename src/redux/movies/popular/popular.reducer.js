@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   errorMessage: null,
 };
 
-const MoviesReducer = (state = INITIAL_STATE, action) => {
+const PopularMoviesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case POPULAR_MOVIES.FETCH_POPULAR_MOVIE_START:
       return {
@@ -33,4 +33,4 @@ const MoviesReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default MoviesReducer;
+export default PopularMoviesReducer;

@@ -5,8 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 
 //?ACTIONS
-import { fetchPopularMoviesStartAsync } from "./redux/movies/popular/popular.action";
-
+import fetchMoviesStartAsync from "./redux/movies/global-movie-dispatch.action";
 //?COMPONENTS
 import Header from "./components/header/header.component";
 import Sidebar from "./components/sidebar/sidebar.component";
@@ -20,8 +19,8 @@ function App({ toggle }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPopularMoviesStartAsync());
-  }, [dispatch]);
+    dispatch(fetchMoviesStartAsync());
+  }, [dispatch, fetchMoviesStartAsync]);
 
   return (
     <div className="App">
