@@ -15,13 +15,13 @@ const fetchPopularMoviesFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const fetchPopularMoviesStartAsync = () => {
+export const fetchPopularMoviesStartAsync = (page) => {
   return async (dispatch) => {
     try {
       dispatch(fetchPopularMoviesStart());
 
       const PopularMovies = await asyncFetch(
-        "https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1"
+        `https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=${page}`
       );
 
       PopularMovies.forEach((movie) => {

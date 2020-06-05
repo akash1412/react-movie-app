@@ -44,12 +44,12 @@ const ListSidebar = ({ sidebar }) => {
           </Link>
         </li>
         <li className="nav__item">
-          <Link className="nav__link" to="/movie/top-movies">
-            top movies
+          <Link className="nav__link" to="/movies/top-movies">
+            not working
           </Link>
         </li>
         <li className="nav__item">
-          <Link className="nav__link" to="/movie/top-rated">
+          <Link className="nav__link" to="/movies/top-rated">
             top movies
           </Link>
         </li>

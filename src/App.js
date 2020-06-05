@@ -4,8 +4,6 @@ import "./App.scss";
 import { connect, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 
-//?ACTIONS
-import fetchMoviesStartAsync from "./redux/movies/global-movie-dispatch.action";
 //?COMPONENTS
 import Header from "./components/header/header.component";
 import Sidebar from "./components/sidebar/sidebar.component";
@@ -13,14 +11,14 @@ import Backdrop from "./components/backdrop/backdrop.component";
 //?PAGES
 import HomePage from "./pages/homepage/homepage.component";
 import SignUpSignInPage from "./pages/sign-up-and-sign-in-page/sign-up-and-sign-in-page.component";
-import MoviesPage from "./pages/moviespage/moviespage.component";
+import MoviesCategoryPage from "./pages/movies/movies-category-page.component";
 
 function App({ toggle }) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMoviesStartAsync());
-  }, [dispatch, fetchMoviesStartAsync]);
+  // useEffect(() => {
+  //   dispatch(fetchMoviesStartAsync());
+  // }, [dispatch]);
 
   return (
     <div className="App">
@@ -32,7 +30,7 @@ function App({ toggle }) {
           {toggle ? <Backdrop /> : null}
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/movies/:type" component={MoviesPage} />
+            <Route path="/movies" component={MoviesCategoryPage} />
             <Route path="/signin" component={SignUpSignInPage} />
           </Switch>
         </div>

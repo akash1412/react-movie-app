@@ -15,13 +15,13 @@ const fetchUpcomingMoviesFailure = (error) => ({
   payload: error,
 });
 
-export const fetchUpcomingMoviesStartAsync = () => {
+export const fetchUpcomingMoviesStartAsync = (page) => {
   return async (dispatch) => {
     try {
       dispatch(fetchUpcomingMoviesStart());
 
       const movies = await asyncFetch(
-        "https://api.themoviedb.org/3/movie/upcoming?api_key=<<api_key>>&language=en-US&page=1"
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=<<api_key>>&language=en-US&page=${page}`
       );
 
       movies.forEach((movie) => {

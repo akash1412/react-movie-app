@@ -16,13 +16,13 @@ const fetchTopratedMoviesFailure = (error) => ({
   payload: error,
 });
 
-export const fetchTopratedMoviesStartAsync = () => {
+export const fetchTopratedMoviesStartAsync = (page) => {
   return async (dispatch) => {
     try {
       dispatch(fetchTopratedMoviesStart());
 
       const movies = await asyncFetch(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=1"
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=${page}`
       );
 
       movies.forEach((movie) => {

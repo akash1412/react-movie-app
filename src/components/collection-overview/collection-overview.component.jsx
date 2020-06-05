@@ -1,9 +1,14 @@
 import React from "react";
+
 import "./collection-overview.style.scss";
 
 import Card from "../card/card.component";
 
-const CollectionOverview = ({ moviesCollection, history }) => {
+const CollectionOverview = ({
+  moviesCollection,
+  page,
+  handlePaginationClick,
+}) => {
   return (
     <div className="collection-overview-container">
       {moviesCollection.map(({ id, poster_path, title }) => (

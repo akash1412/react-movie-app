@@ -17,7 +17,7 @@ const UpcomingMoviesReducer = (state = INITIAL_STATE, action) => {
     case UPCOMING_MOVIES.FETCH_UPCOMING_SUCCESS:
       return {
         ...state,
-        popularMovies: action.payload,
+        upcomingMovies: action.payload,
         loading: false,
       };
 
