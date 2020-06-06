@@ -9,7 +9,8 @@ import { toggleSidebar } from "../../redux/toggle/toggleAction";
 
 //?COMPONENTS
 
-const ListSidebar = ({ sidebar }) => {
+const ListSidebar = ({ sidebar, pageNo }) => {
+  console.log(pageNo);
   const dispatch = useDispatch();
   return (
     <div className={`sidebar ${sidebar ? "slide-in" : ""} `}>
@@ -23,6 +24,11 @@ const ListSidebar = ({ sidebar }) => {
           </div>
         </div>
 
+        <li className="nav__item">
+          <Link className="nav__link" to={`/${pageNo}`}>
+            now playing
+          </Link>
+        </li>
         <li className="nav__item">
           <Link className="nav__link" to="/movies/now-playing">
             now playing
@@ -60,8 +66,9 @@ const ListSidebar = ({ sidebar }) => {
   );
 };
 
-const mapStateToProps = ({ toggleReducer }) => ({
+const mapStateToProps = ({ toggleReducer, TvReducer }) => ({
   sidebar: toggleReducer.toggle,
+  pageNo: TvReducer.popular.page,
 });
 
 export default connect(mapStateToProps)(ListSidebar);

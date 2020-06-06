@@ -29,7 +29,7 @@ function App({ toggle }) {
         <div className="main-content">
           {toggle ? <Backdrop /> : null}
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/:pageno" component={HomePage} />
             <Route path="/movies" component={MoviesCategoryPage} />
             <Route path="/signin" component={SignUpSignInPage} />
           </Switch>

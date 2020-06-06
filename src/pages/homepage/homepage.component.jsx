@@ -1,34 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./homepage.style.scss";
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+
+import { fetchPopularOnTvStartAsync } from "../../redux/tv/tv.actions";
 
 //?COMPONENTS
+import CollectionOverview from "../../components/collection-overview/collection-overview.component";
+import Pagination from "../../components/pagination/pagination.component";
 
-const HomePage = ({ sidebar, popularMovies }) => {
+const HomePage = ({
+  popularOnTv,
+  total_Pages,
+  current_Page,
+  total_Results,
+  match,
+}) => {
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(current_Page);
+
+  const [totalResults, setTotalResults] = useState(total_Results);
+  const [totalPages, setTotalPages] = useState(total_Pages);
+
+  console.log(match);
+  useEffect(() => {
+    dispatch(fetchPopularOnTvStartAsync(match.params.pageno));
+  }, [dispatch]);
+
+  const handlePaginationClick = (e) => {
+    console.log(e.target.value);
+
+    dispatch(fetchPopularOnTvStartAsync(e.target.value.toString()));
+  };
+
   return (
-    <>
-      <div className={`homepage ${sidebar ? "homepage-margin-push" : ""}`}>
-        <div className="container">
-          {popularMovies.map(({ id, poster_path, backdrop_path, title }) => (
-            <div key={id} className="card">
-              <img
-                src={poster_path}
-                style={{ width: "200px", height: "200px" }}
-                alt="img"
-              />
-              <span>{title}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
+    <div className="homepage">
+      <CollectionOverview moviesCollection={popularOnTv} />
+      <Pagination
+        totalResults={totalResults}
+        totalPages={totalPages}
+        handlePaginationClick={handlePaginationClick}
+      />
+    </div>
   );
 };
 
-const mapStateToProps = ({ toggleReducer, popularMoviesReducer }) => ({
-  sidebar: toggleReducer.toggle,
-  popularMovies: popularMoviesReducer.popularMovies,
+const mapStateToProps = ({ TvReducer }) => ({
+  popularOnTv: TvReducer.popular.data,
+  current_Page: TvReducer.popular.page,
+  total_Results: TvReducer.popular.totalResults,
+  total_Pages: TvReducer.popular.totalPages,
 });
 
 export default connect(mapStateToProps)(HomePage);
