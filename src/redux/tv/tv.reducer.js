@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   },
 };
 
-const TvReducer = (state = INITIAL_STATE, action) => {
+export const TvReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PopularOnTV.FETCH_POPULAR_ON_TV_START:
       return {
@@ -50,4 +50,6 @@ const TvReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default TvReducer;
+// export default TvReducer;
+
+//////////////////////////////////////

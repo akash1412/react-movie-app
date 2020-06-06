@@ -9,6 +9,7 @@ export async function asyncFetch(url) {
 
   return fetch.data.results;
 }
+
 export async function asyncTVShowsFetch(url) {
   const URL = url.replace("<<api_key>>", API_KEY);
 

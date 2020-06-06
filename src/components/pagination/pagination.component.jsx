@@ -1,4 +1,6 @@
 import React from "react";
+import "./pagination.style.scss";
+
 import { withRouter } from "react-router-dom";
 
 const Pagination = ({ totalResults, totalPages, handlePaginationClick }) => {
@@ -9,10 +11,16 @@ const Pagination = ({ totalResults, totalPages, handlePaginationClick }) => {
   }
 
   return (
-    <div>
+    <div className="pagination">
       {pageNumbers.map((number) => (
-        <li value={number} onClick={(e) => handlePaginationClick(e)}>
-          <a href={`/${number}`}>{number}</a>
+        <li
+          className="pagination__item"
+          value={number}
+          onClick={(e) => handlePaginationClick(e)}
+        >
+          <a className="pagination__link" href={`/${number}`}>
+            {number}
+          </a>
         </li>
       ))}
     </div>
