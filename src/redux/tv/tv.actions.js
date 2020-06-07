@@ -43,7 +43,7 @@ const fetchLatestOnTvSuccess = (data) => ({
 });
 
 const fetchLatestOnTvFailure = (error) => ({
-  type: LatestOnTv.FETCH_POPULAR_ON_TV_FAILURE,
+  type: LatestOnTv.FETCH_LATEST_ON_TV_FAILURE,
   payload: error,
 });
 
@@ -52,9 +52,10 @@ export const fetchLatestOnTvStartAsync = () => async (dispatch) => {
     dispatch(fetchLatestOnTvStart());
 
     const latestOnTv = await asyncTVShowsFetch(
-      "https://api.themoviedb.org/3/tv/latest?api_key=7f9064828b08b49a74ff8900e1c2bf5d&language=en-US"
+      "https://api.themoviedb.org/3/tv/latest?api_key=7f9064828b08b49a74ff8900e1c2bf5d&language=en-US",
+      "1Page"
     );
-
+    console.log(LatestOnTv);
     dispatch(fetchLatestOnTvSuccess(latestOnTv));
   } catch (error) {
     dispatch(fetchLatestOnTvFailure(error.message));
@@ -85,7 +86,7 @@ export const fetchTopRatedOnTvStartAsync = (pageNo) => async (dispatch) => {
     const topRatedOnTv = await asyncTVShowsFetch(
       `https://api.themoviedb.org/3/tv/top_rated?api_key=7f9064828b08b49a74ff8900e1c2bf5d&language=en-US&page=${pageNo}`
     );
-    dispatch(topRatedOnTv);
+    dispatch(fetchTopRatedOnTvSuccess(topRatedOnTv));
   } catch (error) {
     dispatch(fetchTopRatedOnTvFailure(error.message));
   }

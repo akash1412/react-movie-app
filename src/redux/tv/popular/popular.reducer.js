@@ -1,22 +1,22 @@
-import { TopRatedOnTv } from "../tv.types";
+import { PopularOnTV } from "../tv.types";
 
 const INITIAL_STATE = {
   loading: false,
+  errorMessgae: null,
   totalResults: null,
   totalPages: null,
   data: [],
-  errorMessage: null,
 };
 
-const topRatedOnTvReducer = (state = INITIAL_STATE, action) => {
+export const popularOnTvReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TopRatedOnTv.FETCH_TOP_RATED_ON_TV_START:
+    case PopularOnTV.FETCH_POPULAR_ON_TV_START:
       return {
         ...state,
         loading: true,
       };
 
-    case TopRatedOnTv.FETCH_TOP_RATED_ON_TV_SUCCESS:
+    case PopularOnTV.FETCH_POPULAR_ON_TV_SUCCESS:
       return {
         ...state,
         data: action.payload.results,
@@ -25,10 +25,10 @@ const topRatedOnTvReducer = (state = INITIAL_STATE, action) => {
         loading: false,
       };
 
-    case TopRatedOnTv.FETCH_TOP_RATED_ON_TV_FAILURE:
+    case PopularOnTV.FETCH_POPULAR_ON_TV_FAILURE:
       return {
         ...state,
-        errorMessage: action.payload,
+        errorMessgae: action.payload,
       };
 
     default:
@@ -36,4 +36,6 @@ const topRatedOnTvReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default topRatedOnTvReducer;
+export default popularOnTvReducer;
+
+//////////////////////////////////////

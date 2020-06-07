@@ -11,6 +11,16 @@ export async function asyncFetch(url) {
 }
 
 export async function asyncTVShowsFetch(url) {
+  // if (singlePage) {
+  //   const fetch = await axios(url);
+  //   console.log({ fetch });
+  //   fetch.data.results.forEach((data) => {
+  //     data.poster_path = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+  //   });
+
+  //   return fetch.data;
+  // }
+
   const URL = url.replace("<<api_key>>", API_KEY);
 
   const fetch = await axios(URL);

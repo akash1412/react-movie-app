@@ -6,9 +6,10 @@ import upcomingMoviesReducer from "./movies/upcoming/upcoming.reducer";
 import topRatedMoviesReducer from "./movies/top-rated/top-rated.reducer";
 import discoverMovieReducer from "./movies/discover/discover.reducer";
 import toggleReducer from "./toggle/toggleReducer";
-import { TvReducer } from "./tv/tv.reducer";
+import popularOnTvReducer from "./tv/popular/popular.reducer";
 import latestOnTvReducer from "./tv/latest/latest.reducer";
 import topRatedOnTvReducer from "./tv/top-rated/top-rated.reducer";
+import onAirOnTvReducer from "./tv/on-air/on-air.reducer";
 
 const rootReducer = combineReducers({
   popularMoviesReducer,
@@ -16,9 +17,10 @@ const rootReducer = combineReducers({
   topRatedMoviesReducer,
   discoverMovieReducer,
   toggleReducer,
-  TvReducer,
+  popularOnTvReducer,
   latestOnTvReducer,
   topRatedOnTvReducer,
+  onAirOnTvReducer,
 });
 
 export default rootReducer;

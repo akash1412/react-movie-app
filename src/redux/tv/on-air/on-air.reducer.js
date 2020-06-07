@@ -1,27 +1,27 @@
-import { LatestOnTv } from "../tv.types";
+import { OnAirOnTv } from "../tv.types";
 
 const INITIAL_STATE = {
   loading: false,
-  latest: [],
+  data: [],
   errorMessage: null,
 };
 
-const latestOnTvReducer = (state = INITIAL_STATE, action) => {
+const onAirOnTvReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case LatestOnTv.FETCH_LATEST_ON_TV_START:
+    case OnAirOnTv.FETCH_ON_AIR_ON_TV_START:
       return {
         ...state,
         loading: true,
       };
 
-    case LatestOnTv.FETCH_LATEST_ON_TV_SUCCESS:
+    case OnAirOnTv.FETCH_ON_AIR_ON_TV_SUCCESS:
       return {
         ...state,
-        latest: action.payload.results,
+        data: action.payload.results,
         loading: false,
       };
 
-    case LatestOnTv.FETCH_LATEST_ON_TV_FAILURE:
+    case OnAirOnTv.FETCH_ON_AIR_ON_TV_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,
@@ -32,4 +32,4 @@ const latestOnTvReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default latestOnTvReducer;
+export default onAirOnTvReducer;

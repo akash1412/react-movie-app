@@ -3,8 +3,6 @@ import "./homepage.style.scss";
 
 import { connect, useDispatch } from "react-redux";
 
-import { fetchPopularOnTvStartAsync } from "../../redux/tv/tv.actions";
-
 //?COMPONENTS
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
 import Pagination from "../../components/pagination/pagination.component";
@@ -17,26 +15,26 @@ const HomePage = ({
   match,
 }) => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(current_Page);
+  const [currentPage, setCurrentPage] = useState(match.params.pageno);
 
   const [totalResults, setTotalResults] = useState(total_Results);
   const [totalPages, setTotalPages] = useState(total_Pages);
 
-  console.log(match);
-  useEffect(() => {
-    dispatch(fetchPopularOnTvStartAsync(match.params.pageno));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchPopularOnTvStartAsync(match.params.pageno));
+  // }, [dispatch]);
 
   const handlePaginationClick = (e) => {
     console.log(e.target.value);
 
-    dispatch(fetchPopularOnTvStartAsync(e.target.value.toString()));
+    // dispatch(fetchPopularOnTvStartAsync(e.target.value.toString()));
   };
 
   return (
     <div className="homepage">
       <CollectionOverview moviesCollection={popularOnTv} />
       <Pagination
+        currentPage={currentPage}
         totalResults={totalResults}
         totalPages={totalPages}
         handlePaginationClick={handlePaginationClick}

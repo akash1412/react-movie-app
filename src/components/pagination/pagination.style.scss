@@ -1,0 +1,20 @@
+.pagination {
+    margin-top: 2.8rem;
+    background-color: orangered;
+    display: flex;
+    flex-wrap: wrap;
+
+    // width: 20rem;
+    // justify-content: space-between;
+
+
+
+    &__item {
+        list-style: none;
+        padding: 1.2rem 1.1rem;
+    }
+
+    &__link {
+        font-size: 1.2rem;
+    }
+}

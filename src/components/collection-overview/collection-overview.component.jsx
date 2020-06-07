@@ -4,15 +4,17 @@ import "./collection-overview.style.scss";
 
 import Card from "../card/card.component";
 
-const CollectionOverview = ({
-  moviesCollection,
-  page,
-  handlePaginationClick,
-}) => {
+const CollectionOverview = ({ collection }) => {
   return (
     <div className="collection-overview-container">
-      {moviesCollection.map(({ id, poster_path, title }) => (
-        <Card key={id} id={id} image={poster_path} title={title} />
+      {collection.map(({ id, poster_path, title, name, vote_average }) => (
+        <Card
+          key={id}
+          id={id}
+          image={poster_path}
+          title={title || name}
+          rating={vote_average}
+        />
       ))}
     </div>
   );

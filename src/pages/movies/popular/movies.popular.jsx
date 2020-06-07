@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect, useDispatch } from "react-redux";
 
@@ -8,6 +8,10 @@ import CollectionOverview from "../../../components/collection-overview/collecti
 
 const PopularMovies = ({ popularMovies }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPopularMoviesStartAsync(page));
+  }, [dispatch]);
 
   const [page, setPage] = useState(1);
 
