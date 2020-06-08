@@ -1,12 +1,14 @@
-import { TOPRATED_MOVIES } from "./top-rated.types";
+import { TOPRATED_MOVIES } from "../movie.types";
 
 const INITIAL_STATE = {
-  topRatedMovies: [],
   loading: false,
+  data: [],
+  totalPages: null,
+  totalResults: null,
   errorMessage: null,
 };
 
-const TopratedMoviesReducer = (state = INITIAL_STATE, action) => {
+const topRatedMoviesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TOPRATED_MOVIES.FETCH_TOPRATED_MOVIE_START:
       return {
@@ -17,7 +19,9 @@ const TopratedMoviesReducer = (state = INITIAL_STATE, action) => {
     case TOPRATED_MOVIES.FETCH_TOPRATED_MOVIE_SUCCESS:
       return {
         ...state,
-        topRatedMovies: action.payload,
+        data: action.payload.results,
+        totalResults: action.payload.total_results,
+        totalPages: action.payload.total_pages,
         loading: false,
       };
 
@@ -33,4 +37,4 @@ const TopratedMoviesReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default TopratedMoviesReducer;
+export default topRatedMoviesReducer;

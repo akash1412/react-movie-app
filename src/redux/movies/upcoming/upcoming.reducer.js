@@ -1,8 +1,10 @@
-import { UPCOMING_MOVIES } from "./upcoming.types";
+import { UPCOMING_MOVIES } from "../movie.types";
 
 const INITIAL_STATE = {
-  upcomingMovies: [],
   loading: false,
+  data: [],
+  totalResults: null,
+  totalPages: null,
   errorMessage: null,
 };
 
@@ -17,7 +19,9 @@ const UpcomingMoviesReducer = (state = INITIAL_STATE, action) => {
     case UPCOMING_MOVIES.FETCH_UPCOMING_SUCCESS:
       return {
         ...state,
-        upcomingMovies: action.payload,
+        data: action.payload.results,
+        totalResults: action.payload.total_results,
+        totalPages: action.payload.total_pages,
         loading: false,
       };
 

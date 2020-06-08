@@ -1,8 +1,10 @@
-import { DISCOVER_MOVIES } from "./discover.type";
+import { DISCOVER_MOVIES } from "../movie.types";
 
 const INITIAL_STATE = {
   loading: false,
-  discoverMovies: [],
+  data: [],
+  totalPages: null,
+  totalResults: null,
   errorMessgae: null,
 };
 
@@ -16,7 +18,9 @@ const discoverMovieReducer = (state = INITIAL_STATE, action) => {
     case DISCOVER_MOVIES.FETCH_DISCOVER_MOVIE_SUCCESS:
       return {
         ...state,
-        discoverMovies: action.payload,
+        data: action.payload.results,
+        totalResults: action.payload.total_results,
+        totalPages: action.payload.total_pages,
         loading: false,
       };
 

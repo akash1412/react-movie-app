@@ -1,12 +1,14 @@
-import { POPULAR_MOVIES } from "./popular.types";
+import { POPULAR_MOVIES } from "../movie.types";
 
 const INITIAL_STATE = {
   loading: false,
-  popularMovies: [],
+  data: [],
+  totalPages: null,
+  totalResults: null,
   errorMessage: null,
 };
 
-const PopularMoviesReducer = (state = INITIAL_STATE, action) => {
+const popularMoviesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case POPULAR_MOVIES.FETCH_POPULAR_MOVIE_START:
       return {
@@ -17,7 +19,9 @@ const PopularMoviesReducer = (state = INITIAL_STATE, action) => {
     case POPULAR_MOVIES.FETCH_POPULAR_MOVIE_SUCCESS:
       return {
         ...state,
-        popularMovies: action.payload,
+        data: action.payload.results,
+        totalResults: action.payload.total_results,
+        totalPages: action.payload.total_pages,
         loading: false,
       };
 
@@ -33,4 +37,4 @@ const PopularMoviesReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default PopularMoviesReducer;
+export default popularMoviesReducer;

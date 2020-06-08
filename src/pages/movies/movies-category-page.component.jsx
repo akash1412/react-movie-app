@@ -5,8 +5,8 @@ import { useDispatch, connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 
 //?ACTION
-import fetchMoviesStartAsync from "../../redux/movies/global-movie-dispatch.action";
-import { fetchDiscoverMovieStartAsync } from "../../redux/movies/discover/discover.action";
+// import fetchMoviesStartAsync from "../../redux/movies/global-movie-dispatch.action";
+// import { fetchDiscoverMovieStartAsync } from "../../redux/movies/discover/discover.action";
 //?COMPONENTS
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
 
@@ -18,10 +18,10 @@ import NowPlayingMovies from "./now-playing/movies.now-playing";
 const MoviesCatergoryPage = ({ match, discoverMovies }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMoviesStartAsync(1));
-    dispatch(fetchDiscoverMovieStartAsync(1));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchMoviesStartAsync(1));
+  //   dispatch(fetchDiscoverMovieStartAsync(1));
+  // }, []);
 
   return (
     <div className="movies-page">
