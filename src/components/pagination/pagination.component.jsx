@@ -16,28 +16,6 @@ const Pagination = ({
     pageNumbers.push(i);
   }
 
-  // console.log(typeof currentPage.toString());
-
-  const pageNumberStartingfromfirstIndex = pageNumbers
-    .slice(currentPage * 1, currentPage * 1 + 2)
-    .map((number) => {
-      return (
-        <li value={number}>
-          <a href={`/${number}`} />
-        </li>
-      );
-    });
-
-  const pageNumberStartingfromotherIndex = pageNumbers
-    .slice(currentPage * 1 - 2, currentPage * 1 + 2)
-    .map((number) => {
-      return (
-        <li value={number}>
-          <a href={`${linkUrl}${number}`} />
-        </li>
-      );
-    });
-  console.log({ pageNumbers, currentPage });
   return (
     <div className="pagination">
       {currentPage === "1" ? null : (

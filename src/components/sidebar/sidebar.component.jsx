@@ -9,60 +9,70 @@ import { toggleSidebar } from "../../redux/toggle/toggleAction";
 
 //?COMPONENTS
 
+const sidebarRoutes = [
+  {
+    path: "/",
+    label: "home",
+  },
+  {
+    path: "/movies/popular/1",
+    label: "popular movies",
+  },
+  {
+    path: "/movies/top-rated/1",
+    label: "top rated movies",
+  },
+  {
+    path: "/movie/trending/1",
+    label: "trending movies ",
+  },
+
+  {
+    path: "/tv/popular/1",
+    label: "popular tv shows",
+  },
+  {
+    path: "/tv/top-rated/1",
+    label: "top rated tv shows",
+  },
+  {
+    path: "/tv/trending/1",
+    label: "trending on tv",
+  },
+
+  {
+    path: "/movie/genres",
+    label: "search movie by genres",
+  },
+  {
+    path: "/tv/genres",
+    label: "search tv shows by genres",
+  },
+];
+
 const ListSidebar = ({ sidebar, pageNo }) => {
   const dispatch = useDispatch();
   return (
     <div className={`sidebar ${sidebar ? "slide-in" : ""} `}>
       <div className="nav">
-        <div className="nav__link close-btn-container">
-          <Link to="/" className="logo sidebar-logo">
-            Logo
-          </Link>
+        <div className="close-btn-container">
+          <li>
+            <Link to="/" className="logo sidebar-logo">
+              logo
+            </Link>
+          </li>
           <div className="close-btn" onClick={() => dispatch(toggleSidebar())}>
             &times;
           </div>
         </div>
 
-        <li className="nav__item">
-          <Link className="nav__link" to={`/1`}>
-            now playing
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/movies/now-playing">
-            now playing
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/tv/popular/1">
-            popular on tv
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/movies/popular">
-            popular movies
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/movies/top-rated">
-            top rated movies
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/movies/upcoming">
-            upcoming movies
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/movies/top-movies">
-            not working
-          </Link>
-        </li>
-        <li className="nav__item">
-          <Link className="nav__link" to="/tv/top-rated/1">
-            TV top rated
-          </Link>
-        </li>
+        {sidebarRoutes.map(({ path, label }) => (
+          <li className="nav__item">
+            <Link className="nav__link" to={path}>
+              {label}
+            </Link>
+          </li>
+        ))}
       </div>
 
       <div className="copyright">copyright &copy; by tmdb</div>

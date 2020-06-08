@@ -1,15 +1,3 @@
-// .backdrop-background {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, .6);
-//     z-index: 10;
-//     cursor: pointer;
-// }
-
-
 .sidebar {
 
 
@@ -22,7 +10,7 @@
     top: 0;
     position: fixed;
     z-index: 20;
-
+    overflow-y: scroll;
 
 
     display: flex;
@@ -33,21 +21,23 @@
 
 .slide-in {
     transition: 0.4s;
-    width: 25rem;
+    width: 27rem;
 }
 
 .nav {
+    display: flex;
+    flex-direction: column;
 
     // &>*:not(:last-child) {
     //     // margin-bottom: 2rem;
     // }
 
     &__item {
-        display: block;
+        // display: block;
         list-style: none;
         padding: 1.2rem 1.5rem;
         padding: .8rem .8rem .8rem 3.2rem;
-        text-decoration: underline;
+        // text-decoration: underline;
         font-size: 1.5rem;
 
 
@@ -83,8 +73,9 @@
 }
 
 .close-btn-container {
+    width: 100%;
     position: relative;
-    padding: .8rem .8rem .8rem 3.2rem;
+    padding: .8rem .8rem .8rem .8rem;
     display: flex;
 
     align-items: center;
