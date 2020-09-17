@@ -1,22 +1,28 @@
-import React from "react";
+import React from 'react';
 
-import "./collection-overview.style.scss";
+import { OverviewContainer } from './collection-overview.styles';
 
-import Card from "../card/card.component";
+import ErrorBoundary from '../../error-boundary/error-boundary';
+
+import Card from '../card/card.component.jsx';
 
 const CollectionOverview = ({ collection }) => {
   return (
-    <div className="collection-overview-container">
-      {collection.map(({ id, poster_path, title, name, vote_average }) => (
-        <Card
-          key={id}
-          id={id}
-          image={poster_path}
-          title={title || name}
-          rating={vote_average}
-        />
-      ))}
-    </div>
+    <ErrorBoundary>
+      <OverviewContainer>
+        {collection.map(
+          ({ id, poster_path, backdrop_path, title, name, vote_average }) => (
+            <Card
+              key={id}
+              id={id}
+              src={poster_path}
+              title={title || name}
+              rating={vote_average}
+            />
+          )
+        )}
+      </OverviewContainer>
+    </ErrorBoundary>
   );
 };
 

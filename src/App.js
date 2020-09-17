@@ -1,37 +1,52 @@
-import React from "react";
-import "./App.scss";
+import React from 'react';
 
-import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-//?COMPONENTS
-import Header from "./components/header/header.component";
-import Sidebar from "./components/sidebar/sidebar.component";
-import Backdrop from "./components/backdrop/backdrop.component";
-//?PAGES
-import HomePage from "./pages/homepage/homepage.component";
-import SignUpSignInPage from "./pages/sign-up-and-sign-in-page/sign-up-and-sign-in-page.component";
-import MoviesCategoryPage from "./pages/movies/movies-category-page.component";
-import TvCategoryPage from "./pages/tv/tv-category-page.component";
+import Theme from './theme.provider';
+import GlobalStyle from './global-styles';
+
+import { MainWrapper, Main } from './app.style.jsx';
+
+import Navbar from './components/navbar/navbar.component';
+import Sidebar from './components/sidebar/sidebar.component';
+import BackDrop from './components/backdrop/backdrop.component';
+import ErrorUI from './components/error-ui/error-ui.component';
+
+import Upcoming from './pages/upcoming/upcoming.component';
+import TopRated from './pages/top-rated/top-rated.component';
+import Popular from './pages/popular/popular.component';
+import DetailsPage from './pages/details-page/details-page.component';
+import Genre from './pages/genre/genre.component';
+import SearchPage from './pages/search/search.component';
 
 function App({ toggle }) {
-  return (
-    <div className="App">
-      <Header />
 
-      {toggle ? <Sidebar /> : null}
-      <div className="nav-pusher">
-        <div className="main-content">
-          {toggle ? <Backdrop /> : null}
+
+  return (
+    <Theme>
+      <GlobalStyle />
+      <Navbar />
+      <MainWrapper>
+        {toggle ? <BackDrop /> : null}
+
+        <Sidebar />
+
+        <Main>
           <Switch>
-            {/* <Route exact path="/:pageno" component={HomePage} /> */}
-            <Route exact path="/movies" component={MoviesCategoryPage} />
-            <Route path="/tv" component={TvCategoryPage} />
-            <Route path="/signin" component={SignUpSignInPage} />
+            <Redirect exact from="/" to="/upcoming" />
+            <Route path="/upcoming" component={Upcoming} />
+
+            <Route exact path="/top-rated" component={TopRated} />
+            <Route exact path="/popular" component={Popular} />
+            <Route exact path="/movie/:id" component={DetailsPage} />
+            <Route exact path="/genre/:genre" component={Genre} />
+            <Route path="/search" component={SearchPage} />
+            <Route path="*" component={ErrorUI} />
           </Switch>
-        </div>
-      </div>
-    </div>
+        </Main>
+      </MainWrapper>
+    </Theme>
   );
 }
 

@@ -1,87 +1,81 @@
-import React from "react";
+import React from 'react';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
+import {
+  Wrapper,
+  Logo,
+  GenreLogo,
+  List,
+  RouteLink,
+  ListItem,
+  Title,
+} from './sidebar.style';
 
-import "./sidebar.style.scss";
+import { connect } from 'react-redux';
 
-import { useDispatch, connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { genres } from '../../utils/utils';
 
-import { toggleSidebar } from "../../redux/toggle/toggleAction";
+const Sidebar = ({ toggle }) => {
+  const params = useParams();
+  const location = useLocation();
 
-//?COMPONENTS
+  // console.log(history, location);
+  // const [active, setActive] = React.useState('');
+  // React.useState(() => {
+  //   const activeUrl = location.pathname.split('/')[1];
+  //   setActive(activeUrl);
+  // }, [location.pathname]);
 
-const sidebarRoutes = [
-  {
-    path: "/",
-    label: "home",
-  },
-  {
-    path: "/movies/popular/1",
-    label: "popular movies",
-  },
-  {
-    path: "/movies/top-rated/1",
-    label: "top rated movies",
-  },
-  {
-    path: "/movie/trending/1",
-    label: "trending movies ",
-  },
+  let current;
+  if (location.pathname.includes('genre')) {
+     
+    current = location.pathname.split('/')[2];
+    console.log(current);
+  } else {
+    current = location.pathname.split('/')[1];
+  }
 
-  {
-    path: "/tv/popular/1",
-    label: "popular tv shows",
-  },
-  {
-    path: "/tv/top-rated/1",
-    label: "top rated tv shows",
-  },
-  {
-    path: "/tv/trending/1",
-    label: "trending on tv",
-  },
+const [active,setActive]=React.useState(current)
 
-  {
-    path: "/movie/genres",
-    label: "search movie by genres",
-  },
-  {
-    path: "/tv/genres",
-    label: "search tv shows by genres",
-  },
-];
-
-const ListSidebar = ({ sidebar, pageNo }) => {
-  const dispatch = useDispatch();
+   
   return (
-    <div className={`sidebar ${sidebar ? "slide-in" : ""} `}>
-      <div className="nav">
-        <div className="close-btn-container">
-          <li>
-            <Link to="/" className="logo sidebar-logo">
-              logo
-            </Link>
-          </li>
-          <div className="close-btn" onClick={() => dispatch(toggleSidebar())}>
-            &times;
-          </div>
-        </div>
+    <Wrapper toggle={toggle}>
+      <Logo />
+      <Title>Discover</Title>
+      <List>
+        <ListItem active={active} listName="upcoming" onClick={()=>setActive('upcoming')}>
+          <RouteLink to="/upcoming" active={active} listName="upcoming">
+            upcoming
+          </RouteLink>
+        </ListItem>
+        <ListItem active={active} listName="popular" onClick={()=>setActive('popular')}>
+          <RouteLink to="/popular" active={active} listName="popular">
+            popular
+          </RouteLink>
+        </ListItem>
+        <ListItem active={active} listName="top-rated" onClick={()=>setActive('top-rated')}>
+          <RouteLink to="/top-rated" active={active} listName="top-rated">
+            top rated
+          </RouteLink>
+        </ListItem>
+      </List>
 
-        {sidebarRoutes.map(({ path, label }) => (
-          <li className="nav__item">
-            <Link className="nav__link" to={path}>
-              {label}
-            </Link>
-          </li>
+      <Title>Genre</Title>
+      <List>
+        {genres.map(({ path, name }, idx) => (
+          <ListItem key={idx} active={active} listName={name}  onClick={()=>setActive(name)}>
+            <GenreLogo active={active} listName={name} />
+            <RouteLink to={path} active={active} listName={name}>
+              {name}
+            </RouteLink>
+          </ListItem>
         ))}
-      </div>
-
-      <div className="copyright">copyright &copy; by tmdb</div>
-    </div>
+      </List>
+    </Wrapper>
   );
 };
 
 const mapStateToProps = ({ toggleReducer }) => ({
-  sidebar: toggleReducer.toggle,
+  toggle: toggleReducer.toggle,
 });
 
-export default connect(mapStateToProps)(ListSidebar);
+export default connect(mapStateToProps)(Sidebar);

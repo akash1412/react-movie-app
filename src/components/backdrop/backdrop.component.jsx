@@ -1,18 +1,36 @@
-import React from "react";
-import "./backdrop.style.scss";
+import React from 'react';
 
-import { useDispatch } from "react-redux";
+import styled from 'styled-components';
 
-//?ACTIONS
-import { toggleSidebar } from "../../redux/toggle/toggleAction";
+import { useDispatch } from 'react-redux';
+
+import { toggleSidebar } from '../../redux/toggle/toggleAction';
+
+const BackDrop = styled.div`
+  background-color: rgba(0, 0, 0, 0.3);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+
+  cursor: pointer;
+
+  @media screen and (min-width: 75em) {
+    display: none;
+  }
+`;
 
 const Backdrop = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="backdrop" onClick={() => dispatch(toggleSidebar())}>
-      {"\u00A0"}
-    </div>
+    <BackDrop className="backdrop" onClick={() => dispatch(toggleSidebar())}>
+      {'\u00A0'}
+    </BackDrop>
   );
 };
 

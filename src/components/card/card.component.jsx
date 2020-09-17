@@ -1,31 +1,70 @@
-import React from "react";
-import "./card.style.scss";
+import React, { useState } from "react";
 
-import { ReactComponent as Star } from "../../assets/star/star.svg";
+import LazyLoad from "react-lazyload";
 
-const Card = ({ id, title, image, rating }) => {
+import {
+  CardContainer,
+  CardImg,
+  CardTitle,
+  Details,
+  ImageLoadWrapper,
+} from "./card.style";
+
+import BlankCanvas from "../../assets/image-error/blank_canvas.svg";
+import { Loader } from "../spinner/spinner.component";
+
+import { withRouter } from "react-router-dom";
+
+const Card = ({ id, title, src, rating, match, history }) => {
+  const [loaded, setLoaded] = useState(false);
+
   const textTrimFunc = (title) => {
     let newTitle;
-    if (title.length > 16) {
-      newTitle = title.substring(0, 16);
-      return `${newTitle} ....`;
+    if (title.length > 20) {
+      newTitle = title.substring(0, 20);
+      return `${newTitle} ...`;
     }
 
     return title;
   };
 
+  const handleCardClick = () => {
+    history.push(`/movie/${id}`);
+  };
+
   return (
-    <div className="card">
-      <img src={image} className="card__img" />
-      <div className="card__details">
-        <h2 className="card__title">{textTrimFunc(title)}</h2>
-        <div className="card__ratings-container">
-          <Star className="card__star-icon" />
+    <CardContainer
+      animate={{ scale: 1 }}
+      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.4 }}
+      onClick={() => handleCardClick()}
+    >
+      {/* <LazyLoad> */}
+      {!loaded ? (
+        <ImageLoadWrapper>
+          <Loader />
+        </ImageLoadWrapper>
+      ) : null}
+
+      <CardImg
+        style={!loaded ? { display: "none" } : {}}
+        src={`${process.env.REACT_APP_IMAGE_URL}${src}`}
+        onLoad={() => setLoaded(true)}
+        onError={(e) => {
+          e.target.src = `${BlankCanvas}`;
+        }}
+      />
+
+      {/* </LazyLoad> */}
+      <Details>
+        <CardTitle>{textTrimFunc(title)}</CardTitle>
+        {/* <div className="card__ratings-container">
+          
           <span className="card__rating-value">{rating}</span>
-        </div>
-      </div>
-    </div>
+        </div> */}
+      </Details>
+    </CardContainer>
   );
 };
 
-export default Card;
+export default withRouter(Card);
