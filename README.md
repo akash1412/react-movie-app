@@ -1,8 +1,9 @@
-Watch Fliix  url: https://watch-flix.vercel.app/.
+##Watch Fliix  url: https://watch-flix.vercel.app/.
 
 ## Available Scripts
 
-In the project directory, you can run:
+ ![Uploading Screenshot (24).png…]()
+
 
 ### `yarn start`
 
