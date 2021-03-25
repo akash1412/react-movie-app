@@ -1,9 +1,8 @@
-## Watch Fliix  url: https://watch-flix.vercel.app/.
+## Watch Fliix
 
-## Available Scripts
+# url: https://watch-flix.vercel.app/.
 
- ![Uploading Screenshot (24).png…]()
-
+[screenshot]('./src/assets/screenshot.png')
 
 ### `yarn start`
 
