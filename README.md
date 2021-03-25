@@ -2,7 +2,7 @@
 
 # url: https://watch-flix.vercel.app/.
 
-[screenshot]('./src/assets/screenshot.png')
+![screenshot]('./src/assets/screenshot.png')
 
 ### `yarn start`
 
