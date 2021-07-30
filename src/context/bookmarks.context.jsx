@@ -14,7 +14,6 @@ const BookMarkContextProvider = ({ children }) => {
 	const [bookmarkedMovies, setBookMarkedMovies] = useState([]);
 
 	useEffect(() => {
-		setLoading(true);
 		(async () => {
 			await DB.collection('savedmovies').onSnapshot(snap => {
 				let savedDocs = [];
@@ -24,8 +23,6 @@ const BookMarkContextProvider = ({ children }) => {
 
 				setBookMarkedMovies(savedDocs);
 			});
-
-			setLoading(false);
 		})();
 	}, []);
 
