@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
-import Slider from "react-slick";
+import React, { useRef, useState, useEffect } from 'react';
+import Slider from 'react-slick';
 
-import { Wrapper, LinkWrapper, MovieImg } from "./cast.style";
+import { Wrapper, LinkWrapper, MovieImg, Title } from './cast.style';
 
-import { Loader } from "../spinner/spinner.component";
+import { Loader } from '../spinner/spinner.component';
 
-import placeholder from "../../assets/profile-image-error/man.png";
+import placeholder from '../../assets/profile-image-error/man.png';
 
 const Cast = ({ cast }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -22,8 +22,8 @@ const Cast = ({ cast }) => {
 
 	useEffect(() => {
 		changeTotalShow();
-		window.addEventListener("resize", changeTotalShow);
-		return () => window.removeEventListener("resize", changeTotalShow);
+		window.addEventListener('resize', changeTotalShow);
+		return () => window.removeEventListener('resize', changeTotalShow);
 	}, []);
 
 	const items = cast.map(cst => (
@@ -45,6 +45,21 @@ const Cast = ({ cast }) => {
 		speed: 500,
 		slidesToShow: totalShow,
 		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 475,
+				settings: {
+					dots: false,
+					infinite: true,
+					autoplay: true,
+					autoplaySpeed: 3000,
+					swipeToSlide: true,
+					speed: 500,
+					slidesToShow: totalShow / 2,
+					slidesToScroll: 1,
+				},
+			},
+		],
 	};
 
 	if (!cast) {
@@ -52,9 +67,12 @@ const Cast = ({ cast }) => {
 	}
 
 	return (
-		<Wrapper ref={sliderElement}>
-			<Slider {...setting}>{items}</Slider>
-		</Wrapper>
+		<>
+			<Wrapper ref={sliderElement}>
+				<Title>Cast</Title>
+				<Slider {...setting}>{items}</Slider>
+			</Wrapper>
+		</>
 	);
 };
 

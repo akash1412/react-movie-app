@@ -19,39 +19,42 @@ import Popular from './pages/popular/popular.component';
 import DetailsPage from './pages/details-page/details-page.component';
 import Genre from './pages/genre/genre.component';
 import SearchPage from './pages/search/search.component';
+import BookMarkContextProvider from './context/bookmarks.context';
+import BookMarks from './pages/Bookmarks/Bookmarks.component';
 
 function App({ toggle }) {
+	return (
+		<Theme>
+			<GlobalStyle />
+			<BookMarkContextProvider>
+				<Navbar />
+				<MainWrapper>
+					{toggle ? <BackDrop /> : null}
 
+					<Sidebar />
 
-  return (
-    <Theme>
-      <GlobalStyle />
-      <Navbar />
-      <MainWrapper>
-        {toggle ? <BackDrop /> : null}
+					<Main>
+						<Switch>
+							<Redirect exact from='/' to='/upcoming' />
+							<Route path='/upcoming' component={Upcoming} />
 
-        <Sidebar />
-
-        <Main>
-          <Switch>
-            <Redirect exact from="/" to="/upcoming" />
-            <Route path="/upcoming" component={Upcoming} />
-
-            <Route exact path="/top-rated" component={TopRated} />
-            <Route exact path="/popular" component={Popular} />
-            <Route exact path="/movie/:id" component={DetailsPage} />
-            <Route exact path="/genre/:genre" component={Genre} />
-            <Route path="/search" component={SearchPage} />
-            <Route path="*" component={ErrorUI} />
-          </Switch>
-        </Main>
-      </MainWrapper>
-    </Theme>
-  );
+							<Route exact path='/top-rated' component={TopRated} />
+							<Route exact path='/popular' component={Popular} />
+							<Route exact path='/movie/:id' component={DetailsPage} />
+							<Route exact path='/genre/:genre' component={Genre} />
+							<Route path='/search' component={SearchPage} />
+							<Route path='/bookmarks' component={BookMarks} />
+							<Route path='*' component={ErrorUI} />
+						</Switch>
+					</Main>
+				</MainWrapper>
+			</BookMarkContextProvider>
+		</Theme>
+	);
 }
 
 const mapStateToProps = ({ toggleReducer }) => ({
-  toggle: toggleReducer.toggle,
+	toggle: toggleReducer.toggle,
 });
 
 export default connect(mapStateToProps)(App);

@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 
-import { useDispatch, connect } from "react-redux";
+import { useDispatch, connect } from 'react-redux';
 
-import { fetchDetailStartAsync } from "../../redux/detail/detail.action";
+import { fetchDetailStartAsync } from '../../redux/detail/detail.action';
 
-import Recommended from "../recommend/recommend.component";
+import Recommended from '../recommend/recommend.component';
 
-import Heading from "../../components/heading/heading.component";
-import Detail from "../../components/detail/detail.component";
-import Spinner from "../../components/spinner/spinner.component";
-import ErrorUI from "../../components/error-ui/error-ui.component";
+import Heading from '../../components/heading/heading.component';
+import Detail from '../../components/detail/detail.component';
+import Spinner from '../../components/spinner/spinner.component';
+import ErrorUI from '../../components/error-ui/error-ui.component';
 
-const DetailsPage = ({ match, detail, loading, error, history }) => {
+const DetailsPage = ({ match, detail, cast, loading, error, history }) => {
 	const params = new URLSearchParams(history.location.search);
-	const queryPage = params.get("page");
+	const queryPage = params.get('page');
 
 	const dispatch = useDispatch();
 
@@ -35,9 +35,9 @@ const DetailsPage = ({ match, detail, loading, error, history }) => {
 	return (
 		<React.Fragment>
 			<Helmet>
-				<title>{detail ? detail.title : "loading.."}</title>
+				<title>{detail ? detail.title : 'loading..'}</title>
 			</Helmet>
-			<Detail detail={detail || []} />
+			<Detail detail={detail || []} cast={cast} />
 
 			<Recommended movieID={match.params.id} queryPage={queryPage || 1} />
 		</React.Fragment>

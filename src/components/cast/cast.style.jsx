@@ -1,9 +1,29 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	margin-top: 5rem;
 	margin-bottom: 5rem;
-	width: 100%;
+	margin-left: 2rem;
+	/* width: 100%; */
+
+	@media (max-width: 874px) {
+		margin-left: 0;
+	}
+
+	& > .slick-slider > button::before {
+		color: #34495e;
+	}
+
+	@media (max-width: 475px) {
+		display: none;
+	}
+`;
+
+export const Title = styled.h2`
+	font-size: 1.5rem;
+	color: #34495e;
+	text-transform: capitalize;
+	margin-bottom: 2rem;
 `;
 
 export const LinkWrapper = styled.div`
@@ -12,8 +32,8 @@ export const LinkWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: ${props => (props.loaded ? "1" : "0")};
-	visibility: ${props => (props.loaded ? "visible" : "hidden")};
+	opacity: ${props => (props.loaded ? '1' : '0')};
+	visibility: ${props => (props.loaded ? 'visible' : 'hidden')};
 `;
 
 export const MovieImg = styled.img`

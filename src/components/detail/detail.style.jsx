@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { ReactComponent as arrowLeft } from "../../assets/arrow-left/return.svg";
+import { ReactComponent as arrowLeft } from '../../assets/arrow-left/return.svg';
 
-import { Link } from "react-router-dom";
-import detailReducer from "./../../redux/detail/detail.reducer";
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
+	margin-top: 2rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 
 export const PosterWrapper = styled(Link)`
 	width: 28rem;
-	height: 45rem;
+	min-height: 45rem;
 	border-radius: 0.8rem;
 	text-decoration: none;
 	text-align: center;
@@ -23,15 +23,19 @@ export const PosterWrapper = styled(Link)`
 		width: 90%;
 		height: 45rem;
 	}
-
 	& > h1 {
 		margin: 1.2rem 0;
+	}
+
+	.date-text {
+		font-size: 1.2rem;
+		color: #2c3e50;
 	}
 `;
 
 export const Poster = styled.img`
 	width: 100%;
-	height: 100%;
+	height: 85%;
 	object-fit: cover;
 	border-radius: 0.8rem;
 	box-shadow: 0px 20px 40px rgba(0, 38, 81, 0.3);
@@ -59,7 +63,7 @@ export const OverViewContainer = styled.div`
 `;
 
 export const ArrowLeft = styled(arrowLeft)`
-	background-color: ${({ theme: { colors } }) => colors.blue["50"]};
+	background-color: ${({ theme: { colors } }) => colors.blue['50']};
 	width: 5rem;
 	height: 3rem;
 	fill: #fff;
@@ -67,7 +71,7 @@ export const ArrowLeft = styled(arrowLeft)`
 	border-radius: 2rem;
 	cursor: pointer;
 	&:hover {
-		background-color: ${({ theme: { colors } }) => colors.blue["100"]};
+		background-color: ${({ theme: { colors } }) => colors.blue['100']};
 	}
 	/* 
 	@media screen and (max-width: 30em) {
@@ -80,7 +84,7 @@ export const Synopsis = styled.p`
 	padding-top: 1.2rem;
 	font-size: 1.4rem;
 	font-weight: 500;
-	color: ${({ theme: { colors } }) => colors.blue["100"]};
+	color: ${({ theme: { colors } }) => colors.blue['100']};
 	@media screen and (max-width: 30em) {
 		font-size: 1.1rem;
 	}
@@ -112,7 +116,7 @@ export const TitleWrapper = styled.div`
 
 export const Title = styled.h1`
 	font-size: ${props => props.size}rem;
-	color: ${({ theme: { colors } }) => colors.blue["100"]};
+	color: ${({ theme: { colors } }) => colors.blue['100']};
 	font-weight: bold;
 	@media screen and (max-width: 30em) {
 		font-size: ${props => props.mobSize}rem;
@@ -125,13 +129,13 @@ export const Button = styled.div`
 	cursor: pointer;
 	font-size: ${({ theme: { fontSizes } }) => fontSizes.sm};
 	color: #fff;
-	background-color: ${({ theme: { colors } }) => colors.blue["50"]};
+	background-color: ${({ theme: { colors } }) => colors.blue['50']};
 	border-radius: 2rem;
 	@media screen and (max-width: 40em) {
 		margin-bottom: 1.5rem;
 	}
 
 	&:hover {
-		background-color: ${({ theme: { colors } }) => colors.blue["100"]};
+		background-color: ${({ theme: { colors } }) => colors.blue['100']};
 	}
 `;
